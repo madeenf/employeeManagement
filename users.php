@@ -19,30 +19,38 @@ $result = $mysqli->query("SELECT * FROM users");
     <link rel="stylesheet" href="css/emp_styles.css">
 </head>
 <body>
-    <h1>Manage Users</h1>
-    <a href="add_user.php">Add New User</a>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Username</th>
-                <th>Role</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php while ($row = $result->fetch_assoc()): ?>
-            <tr>
-                <td><?= $row['id']; ?></td>
-                <td><?= $row['username']; ?></td>
-                <td><?= $row['role']; ?></td>
-                <td>
-                    <a href="edit_user.php?id=<?= $row['id']; ?>">Edit</a>
-                    <a href="delete_user.php?id=<?= $row['id']; ?>" onclick="return confirm('Are you sure?')">Delete</a>
-                </td>
-            </tr>
-            <?php endwhile; ?>
-        </tbody>
-    </table>
+    <div class="container">
+        <header>
+            <h2>Manage Users</h2>
+            <a href="dashboard.php" class="back-btn">Back to Dashboard</a>
+        </header>
+
+        <div class="table-container">
+            <a href="add_user.php" class="add-employee-btn">Add New User</a>
+            <table class="modern-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Role</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php while ($row = $result->fetch_assoc()): ?>
+                    <tr>
+                        <td><?= $row['id']; ?></td>
+                        <td><?= $row['username']; ?></td>
+                        <td><?= $row['role']; ?></td>
+                        <td class="actions">
+                            <a href="edit_user.php?id=<?= $row['id']; ?>" class="edit-btn">Edit</a>
+                            <a href="delete_user.php?id=<?= $row['id']; ?>" class="delete-btn" onclick="return confirm('Are you sure?')">Delete</a>
+                        </td>
+                    </tr>
+                    <?php endwhile; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </body>
 </html>

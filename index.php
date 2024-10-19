@@ -1,8 +1,4 @@
 <?php
-
-// error_reporting(E_ALL);
-// ini_set('display_errors', 1);
-
 session_start();
 
 $mysqli = new mysqli("localhost", "root", "", "employee_mgmt");
@@ -19,9 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
-        
-        echo "Stored Hashed Password: " . $user['password'] . "<br>";
-        
+
         if (password_verify($password, $user['password'])) {
             $_SESSION['user_id'] = $user['id'];
             header("Location: dashboard.php");
@@ -41,19 +35,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="css/emp_styles.css">
+    <link rel="stylesheet" href="css/index_styles.css">
 </head>
 <body>
     <div class="login-container">
-        <h2>Login</h2>
-        <form action="index.php" method="POST">
-            <label>Username:</label>
-            <input type="text" name="username" required>
-            <label>Password:</label>
-            <input type="password" name="password" required>
-            <button type="submit">Login</button>
-            <?php if (isset($error)) { echo "<p>$error</p>"; } ?>
-        </form>
+        <div class="login-card">
+            <h2>Login</h2>
+            <form action="index.php" method="POST">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="password" required>
+                </div>
+                <button type="submit">Login</button>
+                <?php if (isset($error)) { echo "<p class='error'>$error</p>"; } ?>
+            </form>
+        </div>
     </div>
 </body>
 </html>

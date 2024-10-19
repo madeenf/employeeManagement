@@ -23,20 +23,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Employee</title>
-    <link rel="stylesheet" href="css/emp_styles.css">
+    <link rel="stylesheet" href="css/addemp_styles.css">
 </head>
 <body>
-    <h2>Add New Employee</h2>
-    <form action="add_emp.php" method="POST">
-        <label>Name:</label>
-        <input type="text" name="name" required>
-        <label>Position:</label>
-        <input type="text" name="position" required>
-        <label>Email:</label>
-        <input type="email" name="email" required>
-        <label>Phone:</label>
-        <input type="text" name="phone" required>
-        <button type="submit">Add Employee</button>
-    </form>
+    <div class="container">
+        <h2>Add New Employee</h2>
+        <form action="add_emp.php" method="POST" class="form-container">
+            <label>Name:</label>
+            <input type="text" name="name" required>
+            <label>Position:</label>
+            <input type="text" name="position" required>
+            <label>Email:</label>
+            <input type="email" name="email" required>
+            <label>Phone:</label>
+            <input type="text" name="phone" required>
+            <button type="submit" class="add-employee-btn">Add Employee</button>
+        </form>
+        <a href="employees.php" class="back-btn">Back</a>
+    </div>
 </body>
 </html>

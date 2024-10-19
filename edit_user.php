@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $role = $_POST['role'];
 
     if (!empty($_POST['password'])) {
-        $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Hash new password if provided
+        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $stmt = $mysqli->prepare("UPDATE users SET username=?, password=?, role=? WHERE id=?");
         $stmt->bind_param("sssi", $username, $password, $role, $id);
     } else {
@@ -35,23 +35,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit User</title>
-    <link rel="stylesheet" href="css/emp_styles.css">
+    <link rel="stylesheet" href="css/addemp_styles.css">
     <script src="js/script.js" defer></script>
 </head>
 <body>
-    <h1>Edit User</h1>
-    <form action="edit_user.php?id=<?= $user['id']; ?>" method="POST">
-        <label>Username:</label>
-        <input type="text" name="username" value="<?= $user['username']; ?>" required>
+    <div class="container">
+        <h2>Edit User</h2>
+        <form action="edit_user.php?id=<?= $user['id']; ?>" method="POST" class="form-container">
+            <label>Username:</label>
+            <input type="text" name="username" value="<?= $user['username']; ?>" required>
 
-        <label>Password (Leave blank to keep current password):</label>
-        <input type="password" name="password">
+            <label>Password (Leave blank to keep current password):</label>
+            <input type="password" name="password">
 
-        <label>Role:</label>
-        <input type="text" name="role" value="<?= $user['role']; ?>" required>
+            <label>Role:</label>
+            <input type="text" name="role" value="<?= $user['role']; ?>" required>
 
-        <button type="submit">Update User</button>
-    </form>
-    <a href="users.php">Back to User Management</a>
+            <button type="submit" class="update-employee-btn">Update User</button>
+        </form>
+        <a href="users.php" class="back-btn">Back</a>
+    </div>
 </body>
 </html>
